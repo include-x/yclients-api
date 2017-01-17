@@ -3,6 +3,7 @@
     "description": "Yclients API php wrapper",
     "minimum-stability": "stable",
     "license": "Apache License 2.0",
+    "version": "0.0.3",
     "authors": [
         {
             "name": "Andrey Tyshev",

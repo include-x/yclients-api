@@ -855,14 +855,27 @@ final class YclientsApi
 	 * @param string $fullname
 	 * @param string $phone
 	 * @param string $email
+     * @param string $card Loyalty card number (or the part of it)
+     * @param float $paidMin Minimal revenue from a client
+     * @param float $paidMax Maximum revenue from a client
 	 * @param string $page
 	 * @param string $count
 	 * @return array
 	 * @access public
 	 * @see http://docs.yclients.apiary.io/#reference/7/0/0
 	 */
-	public function getClients($companyId, $userToken, $fullname = null, $phone = null, $email = null, $page = null, $count = null)
-	{
+	public function getClients(
+        $companyId,
+        $userToken,
+        $fullname = null,
+        $phone = null,
+        $email = null,
+        $card = null,
+        $paidMin = null,
+        $paidMax = null,
+        $page = null,
+        $count = null
+    ) {
 		$parameters = array();
 
 		if (!is_null($fullname)) {
@@ -875,6 +888,18 @@ final class YclientsApi
 
 		if (!is_null($email)) {
 			$parameters['email'] = $email;
+		}
+
+		if (!is_null($card)) {
+			$parameters['card'] = $card;
+		}
+
+		if (!is_null($paidMin)) {
+			$parameters['paid_min'] = $paidMin;
+		}
+
+		if (!is_null($paidMax)) {
+			$parameters['paid_max'] = $paidMax;
 		}
 
 		if (!is_null($page)) {
