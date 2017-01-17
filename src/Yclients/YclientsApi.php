@@ -1338,6 +1338,46 @@ final class YclientsApi
 		return $this->request('storages/'.$companyId, [], self::METHOD_GET, $userToken);
 	}
 
+    /**
+     * Get transactions for all storages.
+     *
+     * @param int $companyId
+     * @param string $userToken
+     * @param int $page
+     * @param int $count
+     * @param \DateTime $startDate
+     * @param \DateTime $endDate
+     * @return array
+     */
+    public function getStoragesTransactions(
+        $companyId,
+        $userToken,
+        $page = null,
+        $count = null,
+        \DateTime$startDate = null,
+        \DateTime $endDate = null
+    ) {
+        $parameters = array();
+
+        if (!is_null($page)) {
+            $parameters['page'] = $page;
+        }
+
+        if (!is_null($count)) {
+            $parameters['count'] = $count;
+        }
+
+        if (!is_null($startDate)) {
+            $parameters['start_date'] = $startDate->format('Y-m-d');
+        }
+
+        if (!is_null($endDate)) {
+            $parameters['end_date'] = $endDate->format('Y-m-d');
+        }
+
+        return $this->request('storages/' . $companyId . '/transactions', $parameters, self::METHOD_GET, $userToken);
+    }
+
 	/**
 	 * Подготовка запроса
 	 *
